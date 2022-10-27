@@ -8,7 +8,7 @@ User is prompted to provide responses in the terminal. The responses are then us
 HTML, CSS, JavaScript, Node js, Inquirer package, Jest tests
 
 ## Screenshot
-![image](https://user-images.githubusercontent.com/106935371/198199828-75494619-983d-4c48-bfc0-3b8945a19ef3.png)
+![image](https://user-images.githubusercontent.com/106935371/198201036-90ee62a6-9307-46d0-980f-870fa234541c.png)
 
 ## Installation
 Install and use Inquirer version 8.2.4.
