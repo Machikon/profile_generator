@@ -8,50 +8,56 @@
     <link rel="stylesheet" href=".css">
     <title>My Team Profile</title>
 </head>
+
 <body>
     <header>
-        <h1>My Team's Profile</h1>     
+        <h1 class="display-4">My Team's Profile</h1>   
     </header>
    
     <div class="container"></div>
-
-        <div class="card" style="width: 18rem;">
+       
+        <div class="row align-items-start"></div>
+        
+        <div class="card text-white bg-success mb-3" style="width: 18rem;">
             <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-
-            <ul>                                                <!--Manager-->
-                <li class="group-item">ID:</li>                 <!--ID here from js-->
-                <li class="group-item">Email:</li>              <!--email here from js-->
-                <li class="group-item">Office Number:</li>      <!--office number here from js-->
+            <h3 class="card-title">Manager</h3>
+            <h4 class="card-title"> ${answerMgr.name}</h4>
+            
+            <ul class="list-group list group-flush">            <!--Manager-->
+                <li class="group-item">ID: $answer.Mgr.id}</li>                 <!--ID here from js-->
+                <li class="group-item">Email: <a href= "mailto:">${answerEngr.email}</a> </li>              <!--email here from js-->
+                <li class="group-item">Office Number: ${answer.officeNumber}</li>      <!--office number here from js-->
             </ul>
             
              </div>
         </div>
 
-        <div class="card" style="width: 18rem;">
+        <div class="card text-white bg-success mb-3 " style="width: 18rem;">
             <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <h3 class="card-title">Engineer</h3>
+            <h4 class="card-title">${answerEngr.name}</h4>
+            
 
-            <ul>                                                <!--Engineer-->
-                <li class="group-item">ID:</li>                 <!--ID here from js-->
-                <li class="group-item">Email:</li>              <!--email here from js-->
-                <li class="group-item">GitHub Username:</li>      <!--Github username here from js-->
+            <ul class="list-group list group-flush">            <!--Engineer-->
+                <li class="group-item">ID: ${answerEngr.id}</li>                 <!--ID here from js-->
+                <li class="group-item">Email:<a href="mailto:">${answerId.email}</a></li>              <!--email here from js-->
+                <li class="group-item">GitHub Username: <a href="" target="_blank"></a></li>      <!--Github username here from js-->
             </ul>
             
              </div>
         </div>
 
-        <div class="card" style="width: 18rem;">
+        <div class="card text-white bg-success mb-3" style="width: 18rem;">
             <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <h3 class="card-title">Intern</h3>
+            <h4 class="card-title">${answerIntn.name}</h4>
 
-            <ul>                                                <!--Intern-->
+            
+
+            <ul class="list-group list group-flush">            <!--Intern-->
                 <li class="group-item">ID:</li>                 <!--ID here from js-->
-                <li class="group-item">Email:</li>              <!--email here from js-->
-                <li class="group-item">School:</li>             <!--School here from js-->
+                <li class="group-item">Email:<a href="mailto:">${answerIntn.email}</a></li>              <!--email here from js-->
+                <li class="group-item">School: ${answerIntn.school}></li>             <!--School here from js-->
             </ul>
             
              </div>

@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const internal = require('stream');
+const { Module } = require('module');
 
 askQuestions(){
 
@@ -42,8 +43,6 @@ inquirer
 })
 .then((answerMgr)=> {
 const newManager = new Manager(answerMgr.name, answerMgr.id, answerMgr.email, answerMgr.officeNumber) 
-this.employeeArray.push(newManager);
-
 this.askQuestions();
 });
 
@@ -74,9 +73,7 @@ this.askQuestions();
     ])
 
 .then((answerEgnr)=>{
-    const newEngineer = new Engineer(answerEgnr.name, answerEgnr.id, answerEgnr.email, answerEgnr.github);
-    this.employeeArray.push(newEngineer);
-    
+    const newEngineer = new Engineer(answerEgnr.name, answerEgnr.id, answerEgnr.email, answerEgnr.github); 
     this.askQuestions();
 });
 
@@ -106,13 +103,18 @@ this.askQuestions();
     ])
 .then((answerIntn) =>{
     const newIntern = new internal(answerIntn.name, answerIntn.id, answerIntn.email, answerIntn.school);
-    this.employeeArray.push(newIntern);
-
     this.askQuestions();
 });
 
 }else if (employeeLevel ==='Finish'){
-    fs.writeFile('./')
-}
+    const html = info
+    fs.writeFile('./dist/index.html',html, (err) =>
+    err ? throw new error(err);
 
+)}
+
+
+prompt.askQuestions();
+
+Module.exports = prompt;
 

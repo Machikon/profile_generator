@@ -1,0 +1,16 @@
+body{
+    background-color:#a2f1d2;
+    margin: 0;
+    padding:30px;
+    border: flex;
+}
+header{
+    background-color: rgb(235, 126, 211);
+    text-align: center
+    padding 50px;
+}
+
+h1{
+    text-align: center; 
+}
+
