@@ -1,68 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href=".css">
-    <title>My Team Profile</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>My Team</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+   
 </head>
 
 <body>
-    <header>
-        <h1 class="display-4">My Team's Profile</h1>   
-    </header>
-   
-    <div class="container"></div>
-       
-        <div class="row align-items-start"></div>
-        
-        <div class="card text-white bg-success mb-3" style="width: 18rem;">
-            <div class="card-body">
-            <h3 class="card-title">Manager</h3>
-            <h4 class="card-title"> ${answerMgr.name}</h4>
-            
-            <ul class="list-group list group-flush">            <!--Manager-->
-                <li class="group-item">ID: $answer.Mgr.id}</li>                 <!--ID here from js-->
-                <li class="group-item">Email: <a href= "mailto:">${answerEngr.email}</a> </li>              <!--email here from js-->
-                <li class="group-item">Office Number: ${answer.officeNumber}</li>      <!--office number here from js-->
-            </ul>
-            
-             </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 jumbotron mb-3 team-heading">
+                <h1 class="text-center">My Team</h1>
+            </div>
         </div>
-
-        <div class="card text-white bg-success mb-3 " style="width: 18rem;">
-            <div class="card-body">
-            <h3 class="card-title">Engineer</h3>
-            <h4 class="card-title">${answerEngr.name}</h4>
-            
-
-            <ul class="list-group list group-flush">            <!--Engineer-->
-                <li class="group-item">ID: ${answerEngr.id}</li>                 <!--ID here from js-->
-                <li class="group-item">Email:<a href="mailto:">${answerId.email}</a></li>              <!--email here from js-->
-                <li class="group-item">GitHub Username: <a href="" target="_blank"></a></li>      <!--Github username here from js-->
-            </ul>
-            
-             </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="team-area col-12 d-flex justify-content-center">
+                ${generateTeam(team)}
+            </div>
         </div>
+    </div>
 
-        <div class="card text-white bg-success mb-3" style="width: 18rem;">
-            <div class="card-body">
-            <h3 class="card-title">Intern</h3>
-            <h4 class="card-title">${answerIntn.name}</h4>
-
-            
-
-            <ul class="list-group list group-flush">            <!--Intern-->
-                <li class="group-item">ID:</li>                 <!--ID here from js-->
-                <li class="group-item">Email:<a href="mailto:">${answerIntn.email}</a></li>              <!--email here from js-->
-                <li class="group-item">School: ${answerIntn.school}></li>             <!--School here from js-->
-            </ul>
-            
-             </div>
+    <div class="card employee-card">
+        <div class="card-header">
+            <h2 class="card-title">${manager.getName()}</h2>
+            <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${manager.getRole()}</h3>
         </div>
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item">ID: ${manager.getId()}</li>
+                <li class="list-group-item">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
+                <li class="list-group-item">Office number: ${manager.getOfficeNumber()}</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card employee-card">
+        <div class="card-header">
+            <h2 class="card-title">${engineer.getName()}</h2>
+            <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>${engineer.getRole()}</h3>
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item">ID: ${engineer.getId()}</li>
+                <li class="list-group-item">Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
+                <li class="list-group-item">GitHub: <a href="https://github.com/${engineer.getGithub()}" target="_blank" rel="noopener noreferrer">${engineer.getGithub()}</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card employee-card">
+        <div class="card-header">
+            <h2 class="card-title">${intern.getName()}</h2>
+            <h3 class="card-title"><i class="fas fa-user-graduate mr-2"></i>${intern.getRole()}</h3>
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item">ID: ${intern.getId()}</li>
+                <li class="list-group-item">Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
+                <li class="list-group-item">School: ${intern.getSchool()}</li>
+            </ul>
+        </div>
+    </div>
 
 
+    <script src="https://kit.fontawesome.com/c502137733.js"></script>
 </body>
 </html>

@@ -1,53 +1,65 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const internal = require('stream');
-const { Module } = require('module');
+const generateHTML = require('./util/generateHtml');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
+const members = [];
 
-askQuestions(){
-
-inquirer
-.Prompt(
-    {
-        type:'list',
-        name:'employeeLevel',
-        choices:['Manager', 'Engineer', 'Intern', 'Finish'],
-        message:'Which level of employee so you want to add to your team?'
-    }
-)
-//  ask questions about Manager 
-.then(({employeeLevel}) =>{
-    if(employeeLevel === 'Manager'){
-        inquirer.prompt([
-            {
-                type:'input',
-                name:'name',
-                message:'What is the name of the manager?',
-            },
-            {
-                type:'number',
-                name:'id',
-                message:'What is the ID number of the manager?',
-            },
-            {
-                type:'input',
-                name:'email',
-                message:'What is the email of the manager?',
-            },
-            {
-                type:'input',
-                name:'officeNumber',
-                message:'What is the Office Phone Number of the manager?',
+function askMembers(){
+    inquirer.prompt([
+        {    
+            type:'list',
+            name:'employeeLevel',
+            choices:['Manager', 'Engineer', 'Intern', 'Finish'],
+            message:'Which level of employee so you want to add to your team?'
+        }]) 
+        .then(({employeeLevel}) =>{
+            if(employeeLevel === 'Manager'){
+                createManager();
+            } else if (employeeLevel === 'Engineer'){
+                createEngineer();
+            } else if (employeeLevel === 'Intern'){
+                createIntern();
+            } else if (employeeLevel === 'Finish'){
+                createHtml();
             }
-        ])
-    }
-})
-.then((answerMgr)=> {
-const newManager = new Manager(answerMgr.name, answerMgr.id, answerMgr.email, answerMgr.officeNumber) 
-this.askQuestions();
-});
+})}
+
+function createManager(){
+    inquirer.prompt([
+        {
+            type:'input',
+            name:'name',
+            message:'What is the name of the manager?',
+        },
+        {
+            type:'number',
+            name:'id',
+            message:'What is the ID number of the manager?',
+        },
+        {
+            type:'input',
+            name:'email',
+            message:'What is the email of the manager?',
+        },
+        {
+            type:'input',
+            name:'officeNumber',
+            message:'What is the Office Phone Number of the manager?',
+        }
+    ])
+
+    .then((answerMgr)=> {
+    const newManager = new Manager(answerMgr.name, answerMgr.id, answerMgr.email, answerMgr.officeNumber) 
+    members.push(newManager);
+
+    askMembers();
+})}
 
 // ask questions about engineer
-} else if (employeeLevel === 'Engineer'){
+
+function createEngineer(){
     inquirer.prompt([
         {
             type:'input',
@@ -72,13 +84,17 @@ this.askQuestions();
 
     ])
 
-.then((answerEgnr)=>{
-    const newEngineer = new Engineer(answerEgnr.name, answerEgnr.id, answerEgnr.email, answerEgnr.github); 
-    this.askQuestions();
+    .then((answerEgnr)=>{
+     const newEngineer = new Engineer(answerEgnr.name, answerEgnr.id, answerEgnr.email, answerEgnr.github); 
+     members.push(newEngineer);
+
+        askMembers();
 });
+}
 
 // ask questions about intern
-} else if (employeeLevel === 'Intern'){
+
+function createIntern(){
     inquirer.prompt([
         {
             type:'input',
@@ -101,20 +117,30 @@ this.askQuestions();
             message:'What is the name of the school intern goes?',
         }
     ])
-.then((answerIntn) =>{
-    const newIntern = new internal(answerIntn.name, answerIntn.id, answerIntn.email, answerIntn.school);
-    this.askQuestions();
+    .then((answerIntn) =>{
+     const newIntern = new internal(answerIntn.name, answerIntn.id, answerIntn.email, answerIntn.school);
+     members.push(newIntern);
+
+        askMembers();
 });
+}
 
-}else if (employeeLevel ==='Finish'){
+function createHtml(){
     const html = info
-    fs.writeFile('./dist/index.html',html, (err) =>
-    err ? throw new error(err);
+    fs.writeFile('./dist/index.html',html, (err) =>{
+        err ? console.log(err): console.log('HTML is created.')
+    }
 
-)}
+)};
 
 
-prompt.askQuestions();
+    
+    
 
-Module.exports = prompt;
+
+
+
+
+
+
 
